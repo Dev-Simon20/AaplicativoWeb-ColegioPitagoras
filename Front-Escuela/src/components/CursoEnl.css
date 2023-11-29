@@ -1,0 +1,39 @@
+
+.curs {
+  background-color:#fec198;
+  width: 350px;
+  height: 180px;
+  border-radius: 16px;
+  color: #000;
+  box-sizing: border-box;
+  padding: 20px 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  position: relative;
+}
+.curs-titulo{
+   font-weight: bold;
+   border-bottom: 2px solid black;
+}
+.curs-descp{
+    align-self: center;
+    margin-top: 1em;
+}
+.curs-btn{
+    align-self: flex-end;
+    background-color: #d3f1e3;
+    color: black;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px;
+}
+.curs-btn:hover{
+    border: none;
+}
+
+
+
+

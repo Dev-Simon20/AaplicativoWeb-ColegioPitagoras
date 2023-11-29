@@ -1,0 +1,12 @@
+.nav{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgb(153, 224, 201);
+    height: 80px;
+}
+.enlace{
+    color: black;
+    font-size: 20px;
+    font-weight: bolder;
+}

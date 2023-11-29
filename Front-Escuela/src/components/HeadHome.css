@@ -1,0 +1,30 @@
+.dash {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 0;
+    min-height: 100vh;
+    background-color: #ffff;
+    font-family: "Roboto", sans-serif;
+  
+  }
+  
+  .dash-head{
+      background-color: #d3f1e3;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 50px;
+      color: black;
+  }
+  
+  .dash-head-tit{
+    cursor: pointer;
+  }
+  
+  .dash-head-opt{
+      width: 150px;
+      border-radius: 10px;
+      padding-left: 10px;
+      font-weight: bold;
+      font-size: 16px;
+  }
+  

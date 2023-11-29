@@ -1,0 +1,59 @@
+
+
+.notas{
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 0;
+    min-height: 100vh;
+    font-family: "Roboto", sans-serif;
+  }
+  .botones{
+  
+    box-sizing: border-box;
+    padding: 10px 50px;
+    margin-top: 30px;
+    
+  }
+  
+  .boton-curso{
+    margin-right: 16px;
+  }
+  
+  
+  .cuadro-notas{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .table-notas {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 80%;
+    height: 120px;
+    color: white;
+    color: #000;
+  }
+  .table-notas table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  .table-notas th, .table-notas td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .coment-buton{
+    margin-left: 40px;
+  }
+  .coment{
+    background-color: #2e3b6a;
+    border-radius: 16px;
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    height: 150px;
+    color: white;
+  }
+  
