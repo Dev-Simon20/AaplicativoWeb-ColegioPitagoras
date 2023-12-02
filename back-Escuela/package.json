@@ -1,0 +1,14 @@
+{
+  "name": "back-escuela",
+  "version": "1.0.0",
+  "description": "Servidor para la pagina de la escuela pitagoras",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SimonDev-20",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
