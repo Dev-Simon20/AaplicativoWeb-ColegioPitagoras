@@ -1,0 +1,12 @@
+.content{
+   display: flex;
+   flex-direction: column;
+}
+.titLista{
+    color: #0E285C;
+    width: 450px;
+    padding: 10px;
+    border-radius: 16px;
+    margin: 40px 0 50px 100px;
+    font-size: 25px;
+}

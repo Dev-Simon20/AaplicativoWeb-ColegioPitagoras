@@ -1,9 +1,8 @@
-import { useNavigate } from "react-router-dom";
-import HeadHome from "../components/HeadHome";
 import { useState } from "react";
-import CursoEnl from "../components/CursoEnl";
-import './HomeProfesor.css'
-
+import { useNavigate, useParams } from "react-router-dom"
+import HeadHome from "../components/HeadHome";
+import './ListaAlumnos.css'
+import AlumnOnly from "../components/AlumnOnly";
 const cursosTemp = [
     {
       id: 1,
@@ -36,27 +35,49 @@ const cursosTemp = [
         "Un kit de construcción que permite a los niños aprender sobre la robótica mientras construyen y programan sus propios robots.",
     },
   ];
- const HomeProfesor=({estado})=>{
-    const navigate=useNavigate()
-    const [cursos,setCursos]=useState(cursosTemp);
-
-
-    const handleBack=()=>{
-        navigate('/loginProfesor')
+const alumnosInitial=[
+    {
+      id: 1,
+      nombre: "Ana García"
+    },
+    {
+      id: 2,
+      nombre: "Juan Martínez"
+    },
+    {
+      id: 3,
+      nombre: "María Rodríguez"
+    },
+    {
+      id: 4,
+      nombre: "Carlos López"
+    },
+    {
+      id: 5,
+      nombre: "Laura Pérez"
     }
-    const enlace = "/loginProfesor/homeProfesor/listaAlumnos/";
-    const btnText = "Ver Notas";
-
+  ]
+const ListaAlumnos=()=>{
+    const navigate=useNavigate();
+    const [cursos,setCursos]=useState(cursosTemp)
+    const [alumnos,setAlumnos]=useState(alumnosInitial)
+    let id=parseInt(useParams().id)-1
+    const handleBack=()=>{
+        navigate('/loginProfesor/homeProfesor');
+    }
+    var nombreCur=cursos[id].nombre;
     return(
         <>
         <HeadHome handleBack={handleBack}></HeadHome>
-        <h3 className=" tit">Dashboard de Profesor</h3>
-        <div className="conteinerCur">
-        {cursos.map((curso,i)=>(<CursoEnl key={i} curso={curso} enlace={enlace} btnText={btnText}/>))}
-        </div>
-        
+         <div className="content">
+           <h3 className="titLista"> Curso: {nombreCur}  </h3>
+            {alumnos.map((alumno,i)=>(
+                <AlumnOnly alumno={alumno} key={i} cursos={cursos[id]}/>
+            ))}
+         </div>
+         
         </>
     )
- }
+}
 
- export default HomeProfesor
+export default ListaAlumnos

@@ -9,13 +9,19 @@
   }
   
   .dash-head{
-      background-color: #d3f1e3;
+      background-color: #0E285C;
       display: flex;
       justify-content: space-between;
       padding: 20px 50px;
-      color: black;
+      color: #fff;
   }
   
+  .content-log{
+    display: flex;
+  }
+  .content-log img{
+    margin-right: 25px;
+  }
   .dash-head-tit{
     cursor: pointer;
   }

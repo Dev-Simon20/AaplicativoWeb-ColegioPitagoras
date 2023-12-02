@@ -1,0 +1,11 @@
+
+.tit{
+    background-color: aqua;
+    margin-left: 50px;
+}
+.conteinerCur{
+    padding-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

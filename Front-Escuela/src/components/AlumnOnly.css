@@ -1,0 +1,33 @@
+.contAl{
+    width: 500px;
+    height: 50px;
+    align-self: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid rgb(241, 181, 52);
+    border-radius: 5px;
+    margin-bottom: 16px;
+}
+.nameAl{
+  box-sizing: border-box;
+  display: flex;
+  color: #EB7A09;
+  font-weight: bold;
+  font-size: 20px;
+}
+.buton{
+    background-color: #0E285C;
+    color: #fff;
+    border-radius: 4px;
+    padding: 3px;
+    box-sizing: border-box;
+    transition: .5s;
+    cursor: pointer;
+}
+.buton:hover{
+    background-color: rgb(29, 82, 189);
+    color: #fff;
+}

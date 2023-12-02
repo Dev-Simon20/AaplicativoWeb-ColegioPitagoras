@@ -10,6 +10,8 @@ import HomeAdmin from './pages/HomeAdmin'
 import HomeAlumno from './pages/HomeAlumno'
 import NotasAlumno from  './pages/NotasAlumno'
 import HomeProfesor from './pages/HomeProfesor'
+import ListaAlumnos from './pages/ListaAlumnos'
+import Calificacion from './pages/Calificacion'
 
 
 
@@ -26,12 +28,16 @@ function App() {
 
           <Route path='/loginAlumno' element={<LoginAlumno estado={estado}/>}/>
           <Route path="/loginAlumno/homeAlumno" element={<HomeAlumno estado={estado} rol={rol}/>}/>
-          <Route path="/loginAlumno/homeAlumno/:id" element={<NotasAlumno/>} />
+          <Route path="/loginAlumno/homeAlumno/notasAlumno/:id" element={<NotasAlumno/>} />
 
 
 
           <Route path='/loginProfesor' element={<LoginProfesor estado={estado}/>}/>
           <Route path='/loginProfesor/homeProfesor' element={<HomeProfesor estado={estado}/>}/>
+          <Route path="/loginProfesor/homeProfesor/listaAlumnos/:id"
+           element={<ListaAlumnos/>}/>
+           <Route path="/loginProfesor/homeProfesor/listaAlumnos/calificacion/:id/:idCurso"
+           element={<Calificacion/>}/>
         </Routes>
       </BrowserRouter>
 

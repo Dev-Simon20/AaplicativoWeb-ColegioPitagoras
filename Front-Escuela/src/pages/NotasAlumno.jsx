@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./NotasAlumnos.css"
+import HeadHome from "../components/HeadHome";
 const cursosTemp = [
   {
     id: 1,
@@ -41,32 +42,24 @@ const NotasAlumno = () => {
   let ident = parseInt(useParams().id) - 1;
 
   const handleBack = () => {
-    navigate(-1);
+    navigate('/loginAlumno/homeAlumno');
   };
   const handleChange = (e) => {
     setOption(e.target.value);
   };
   return(
     <div className="notas">
-      <div className="dash-head">
-        <h2 className="dash-head-tit" onClick={handleBack}>
-          Colegio Pitagoras
-        </h2>
-        <select className="dash-head-opt" name="" id="" onChange={handleChange}>
-          <option value=""></option>
-          <option value="logout">LogOut</option>
-          <option value="perfil">Perfil</option>
-        </select>
-      </div>
+      <HeadHome handleBack={handleBack}></HeadHome>
       <section className="botones">
-          <button className="boton-curso"><h3>{curso[ident].nombre}</h3></button>
+          <button className="boton-curso"><p>{curso[ident].nombre}</p></button>
           <button className="boton-back" onClick={handleBack}>Regresar a mis Cursos</button>
       </section>
+
       <section className="cuadro-notas">
       <table className="table-notas">
             <thead>
               <tr>
-                <th></th>
+                <th className="th-ocult"></th>
                 <th>Biemestre 1</th>
                 <th>Biemestre 2</th>
                 <th>Biemestre 3</th>
@@ -76,7 +69,7 @@ const NotasAlumno = () => {
             </thead>
             <tbody>
               <tr>
-                <td>Simon Contreras Hugo</td>
+                <td>Ñahui Ormeño Danielle</td>
                 <td>20</td>
                 <td>18</td>
                 <td>14</td>
@@ -86,9 +79,11 @@ const NotasAlumno = () => {
             </tbody>
           </table>
       </section>
+
+
       <button className="coment-buton">Comentario del profesor</button>
       <div className="coment">
-        <p>Comentario del profesor</p>
+        <p>El alumno esta teniendo un rendimiento.....</p>
       </div>
     </div>
   )
