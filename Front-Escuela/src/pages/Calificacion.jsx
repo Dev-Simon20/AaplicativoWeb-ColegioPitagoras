@@ -16,7 +16,7 @@ const Calificacion = () => {
         <button className="boton-curso">
           <p>curso</p>
         </button>
-        <button className="boton-back">Regresar a mis Cursos</button>
+        <button onClick={clickk} className="boton-back">Regresar a mis Cursos</button>
       </section>
       <section className="cuadro-notas">
         <table className="table-notas">

@@ -1,0 +1,27 @@
+
+
+.contenGrado{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.grad{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.gradbtn{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    background-color: blue;
+    padding: 10px 20px;
+}
+
+.boton{
+    cursor: pointer;
+}
