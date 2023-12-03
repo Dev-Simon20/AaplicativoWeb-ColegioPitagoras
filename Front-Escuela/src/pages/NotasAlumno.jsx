@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./NotasAlumnos.css"
 import HeadHome from "../components/HeadHome";
+import {helphttp} from '../Helpers/helphttps'
 const cursosTemp = [
   {
     id: 1,
@@ -35,23 +36,33 @@ const cursosTemp = [
   },
 ];
 
-const NotasAlumno = () => {
-  const [curso, setCursos] = useState(cursosTemp);
+const NotasAlumno = ({u,setEstado,estado}) => {
+  
+  const [parametro,setParametro]=useState(useParams().id);
   const navigate = useNavigate();
-  const [option, setOption] = useState();
-  let ident = parseInt(useParams().id) - 1;
+  const [cur,setCur]=useState([]);
+  
+  var api=helphttp();
+  var url=`http://localhost:3000/loginAlumno/1000001/${parametro}`
+  useEffect(()=>{
+    api.get(url).then((data)=>{
+      console.log(data);
+      setCur(data)
+    })
+  },[]);
+  useEffect(()=>{
+    !estado&&navigate('/loginAlumno');
+  },[estado]);
+  
 
   const handleBack = () => {
     navigate('/loginAlumno/homeAlumno');
   };
-  const handleChange = (e) => {
-    setOption(e.target.value);
-  };
   return(
     <div className="notas">
-      <HeadHome handleBack={handleBack}></HeadHome>
+      <HeadHome handleBack={handleBack} setEstado={setEstado}></HeadHome>
       <section className="botones">
-          <button className="boton-curso"><p>{curso[ident].nombre}</p></button>
+          <button className="boton-curso"><p>{cur.nombre}</p></button>
           <button className="boton-back" onClick={handleBack}>Regresar a mis Cursos</button>
       </section>
 
@@ -69,12 +80,12 @@ const NotasAlumno = () => {
             </thead>
             <tbody>
               <tr>
-                <td>Ñahui Ormeño Danielle</td>
-                <td>20</td>
-                <td>18</td>
-                <td>14</td>
-                <td>13</td>
-                <td>15</td>
+                <td>{u.nombre}</td>
+                <td>{cur.nota1==null?'--':cur.nota1}</td>
+                <td>{cur.nota2==null?'--':cur.nota2}</td>
+                <td>{cur.nota3==null?'--':cur.nota3}</td>
+                <td>{cur.nota4==null?'--':cur.nota4}</td>
+                <td>{cur.nota4==null?'--':(cur.nota1+cur.nota2+cur.nota3+cur.nota4)/4}</td>
               </tr>
             </tbody>
           </table>

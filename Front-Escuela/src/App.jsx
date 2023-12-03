@@ -16,8 +16,10 @@ import Calificacion from './pages/Calificacion'
 
 
 function App() {
+  // Las constante de useState de estado y rol, servira como verificacion para las rutas 
   const [estado,setEstado]=useState(false);
   const [rol,setRol]=useState('');
+  const [u,setU]=useState('');
   return (
     <>
       <BrowserRouter>
@@ -26,10 +28,12 @@ function App() {
           <Route path='/loginAdmin' element={<LoginAdmin setRol={setRol} estado={estado}/>}/>
           <Route path="/loginAdmin/homeAdmin" element={<HomeAdmin estado={estado} rol={rol}/>}/>
 
-          <Route path='/loginAlumno' element={<LoginAlumno estado={estado}/>}/>
-          <Route path="/loginAlumno/homeAlumno" element={<HomeAlumno estado={estado} rol={rol}/>}/>
-          <Route path="/loginAlumno/homeAlumno/notasAlumno/:id" element={<NotasAlumno/>} />
+          <Route path='/loginAlumno' element={<LoginAlumno estado={estado} setEstado={setEstado} setRol={setRol} setU={setU}/>}/>
+          
+          <Route path="/loginAlumno/homeAlumno" element={<HomeAlumno
+          setEstado={setEstado} estado={estado} rol={rol} u={u}/>}/>
 
+          <Route path="/loginAlumno/homeAlumno/notasAlumno/:id" element={<NotasAlumno u={u} setEstado={setEstado} estado={estado}/>} />
 
 
           <Route path='/loginProfesor' element={<LoginProfesor estado={estado}/>}/>

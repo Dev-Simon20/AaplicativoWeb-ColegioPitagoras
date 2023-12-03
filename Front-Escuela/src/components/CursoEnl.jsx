@@ -3,12 +3,12 @@ import "./CursoEnl.css"
 const CursoEnl=({curso,enlace,btnText})=>{
      
     const navigate=useNavigate();
-    const{id,nombre,descripcion}=curso;
+    const{cod_curso,nombre}=curso;
 
     const handleCLick=()=>{
-        navigate(`${enlace}${id}`);
+        navigate(`${enlace}${cod_curso}`);
     }
-
+    let descripcion='Por ahora no hay descripcion'
     return(
         <div className="curs">
           <p className="curs-titulo">{nombre}</p>

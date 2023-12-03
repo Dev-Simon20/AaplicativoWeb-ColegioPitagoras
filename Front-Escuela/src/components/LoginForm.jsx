@@ -1,8 +1,8 @@
 import { useState } from "react"
 import './LoginForm.css'
 const initialForm={
-    user:"",
-    password:""
+    usuario:"",
+    contrasena:""
 }
 const LoginForm=({userRol,existensiaUsuario,manejarClick})=>{
 
@@ -25,9 +25,9 @@ const LoginForm=({userRol,existensiaUsuario,manejarClick})=>{
          <h2>Login {userRol}</h2>
           <form className="form" onSubmit={handleSubmit}>
             <label htmlFor="">Usuario</label>
-            <input type="text" name="user" placeholder="Inrgrese su usario" onChange={handleChange} value={form.user}/>
+            <input type="text" name="usuario" placeholder="Inrgrese su usario" onChange={handleChange} value={form.usuario}/>
             <label htmlFor="">Contraseña</label>
-            <input type="password" name="password"  placeholder="Ingrese su password" onChange={handleChange} value={form.passsword}/>
+            <input type="password" name="contrasena"  placeholder="Ingrese su password" onChange={handleChange} value={form.contrasena}/>
             <input type="submit" value={"Ingresar"} />
           </form>
         </div>
