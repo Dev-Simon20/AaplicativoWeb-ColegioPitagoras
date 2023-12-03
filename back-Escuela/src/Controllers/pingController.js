@@ -8,6 +8,7 @@ module.exports.ping = (req, res) => {
   JOIN alumnos a ON n.cod_alumno = a.cod_alumno
   WHERE n.cod_alumno = 2000001;
   `;
+
   try{
     connection.query(consult, (err, results) => {
         res.json(results);

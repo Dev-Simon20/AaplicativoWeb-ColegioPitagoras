@@ -8,11 +8,12 @@ const router = express.Router();
 // Cuando se esporta asi: module.exports.ping=(req,res)=>{
 // Si se debe de destructurar
 const  {ping} = require('../Controllers/pingController');
-
-// const { login } = require('../controllers/loginController')
+const {loginAlumno} = require('../Controllers/loginAlumno');
+const {loginProfesor}=require('../Controllers/loginProfesor');
 
 router.get('/ping', ping);
+router.post('/loginAlumno',loginAlumno);
+router.post('/loginProfesor',loginProfesor);
 
-// router.post('/login', login);
 
 module.exports = router;
