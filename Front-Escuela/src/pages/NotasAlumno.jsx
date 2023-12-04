@@ -43,7 +43,7 @@ const NotasAlumno = ({u,setEstado,estado}) => {
   const [cur,setCur]=useState([]);
   
   var api=helphttp();
-  var url=`http://localhost:3000/loginAlumno/1000001/${parametro}`
+  var url=`http://localhost:3000/loginAlumno/${u.cod_alum}/${parametro}`
   useEffect(()=>{
     api.get(url).then((data)=>{
       console.log(data);

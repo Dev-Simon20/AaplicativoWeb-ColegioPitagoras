@@ -1,46 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import HeadHome from "../components/HeadHome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CursoEnl from "../components/CursoEnl";
+import {helphttp} from '../Helpers/helphttps'
 import './HomeProfesor.css'
 
-const cursosTemp = [
-    {
-      id: 1,
-      nombre: "Libro de Programación en Python",
-      descripcion:
-        "Un libro introductorio sobre programación en el lenguaje de programación Python.",
-    },
-    {
-      id: 2,
-      nombre: "Curso de Diseño Gráfico",
-      descripcion:
-        "Un curso en línea que cubre los fundamentos del diseño gráfico utilizando herramientas como Adobe Photoshop e Illustrator.",
-    },
-    {
-      id: 3,
-      nombre: "Kit de Experimentos Científicos",
-      descripcion:
-        "Un conjunto de experimentos científicos para niños que incluye materiales y guías para realizar actividades educativas y divertidas.",
-    },
-    {
-      id: 4,
-      nombre: "Clases de Yoga en Video",
-      descripcion:
-        "Una serie de videos en línea que guían a los usuarios a través de clases de yoga para mejorar la flexibilidad y la relajación.",
-    },
-    {
-      id: 5,
-      nombre: "Juego de Construcción de Robots",
-      descripcion:
-        "Un kit de construcción que permite a los niños aprender sobre la robótica mientras construyen y programan sus propios robots.",
-    },
-  ];
- const HomeProfesor=({estado})=>{
+
+ const HomeProfesor=({estado,setCursoNav,u,setEstado})=>{
+  const {cod_prof,nombre,apellido,estado:est}=u;
     const navigate=useNavigate()
-    const [cursos,setCursos]=useState(cursosTemp);
-
-
+    const [cursos,setCursos]=useState([]);
+    const api=helphttp();
+    const url=`http://localhost:3000/loginProfesor/cursos/${cod_prof}`
+    useEffect(()=>{
+      !estado&&navigate('/loginProfesor');
+    },[estado]);
+    useEffect(()=>{
+      api.get(url).then((data)=>{
+        console.log(data);
+        setCursos(data);
+      });
+    },[])
     const handleBack=()=>{
         navigate('/loginProfesor')
     }
@@ -49,10 +29,10 @@ const cursosTemp = [
 
     return(
         <>
-        <HeadHome handleBack={handleBack}></HeadHome>
+        <HeadHome handleBack={handleBack} setEstado={setEstado}></HeadHome>
         <h3 className=" tit">Dashboard de Profesor</h3>
         <div className="conteinerCur">
-        {cursos.map((curso,i)=>(<CursoEnl key={i} curso={curso} enlace={enlace} btnText={btnText}/>))}
+        {cursos.map((curso,i)=>(<CursoEnl setCursoNav={setCursoNav} key={i} curso={curso} enlace={enlace} btnText={btnText}/>))}
         </div>
         
         </>

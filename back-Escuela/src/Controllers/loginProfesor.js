@@ -19,7 +19,7 @@ module.exports.loginProfesor=(req,res)=>{
             res.send(data)
          }
          else{
-            res.send('Usuario no encontrado')
+            res.send(false)
          }
       })
    }

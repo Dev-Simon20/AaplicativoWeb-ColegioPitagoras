@@ -20,6 +20,7 @@ function App() {
   const [estado,setEstado]=useState(false);
   const [rol,setRol]=useState('');
   const [u,setU]=useState('');
+  const [cursoNav,setCursoNav]=useState('');
   return (
     <>
       <BrowserRouter>
@@ -36,10 +37,12 @@ function App() {
           <Route path="/loginAlumno/homeAlumno/notasAlumno/:id" element={<NotasAlumno u={u} setEstado={setEstado} estado={estado}/>} />
 
 
-          <Route path='/loginProfesor' element={<LoginProfesor estado={estado}/>}/>
-          <Route path='/loginProfesor/homeProfesor' element={<HomeProfesor estado={estado}/>}/>
+
+          <Route path='/loginProfesor' element={<LoginProfesor estado={estado} setEstado={setEstado} setU={setU}/>}/>
+          <Route path='/loginProfesor/homeProfesor' element={<HomeProfesor estado={estado} setCursoNav={setCursoNav} u={u} setEstado={setEstado}/>}/>
+
           <Route path="/loginProfesor/homeProfesor/listaAlumnos/:id"
-           element={<ListaAlumnos/>}/>
+           element={<ListaAlumnos cursoNav={cursoNav}/>}/>
            <Route path="/loginProfesor/homeProfesor/listaAlumnos/calificacion/:id/:idCurso"
            element={<Calificacion/>}/>
         </Routes>

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import HeadHome from "../components/HeadHome";
 import './ListaAlumnos.css'
 import AlumnOnly from "../components/AlumnOnly";
+import {helphttp} from '../Helpers/helphttps'
 const cursosTemp = [
     {
       id: 1,
@@ -57,22 +58,31 @@ const alumnosInitial=[
       nombre: "Laura Pérez"
     }
   ]
-const ListaAlumnos=()=>{
+const ListaAlumnos=({cursoNav})=>{
     const navigate=useNavigate();
+    const [cod_curso,setCod]=useState(useParams().id)
     const [cursos,setCursos]=useState(cursosTemp)
-    const [alumnos,setAlumnos]=useState(alumnosInitial)
-    let id=parseInt(useParams().id)-1
+    const [alumnos,setAlumnos]=useState(alumnosInitial);
+    const api=helphttp();
+    const url=`http://localhost:3000/loginProfesor/cursos/lista/${cod_curso}`;
+
+    useEffect(()=>{
+       api.get(url).then((data)=>{
+        setAlumnos(data)
+        console.log(data);
+       })
+    },[])
     const handleBack=()=>{
         navigate('/loginProfesor/homeProfesor');
     }
-    var nombreCur=cursos[id].nombre;
+    // var nombreCur=cursos[id].nombre;
     return(
         <>
         <HeadHome handleBack={handleBack}></HeadHome>
          <div className="content">
-           <h3 className="titLista"> Curso: {nombreCur}  </h3>
+           <h3 className="titLista"> Curso: {cursoNav}</h3>
             {alumnos.map((alumno,i)=>(
-                <AlumnOnly alumno={alumno} key={i} cursos={cursos[id]}/>
+                <AlumnOnly alumno={alumno} key={i} cod_curso={cod_curso}/>
             ))}
          </div>
          

@@ -6,9 +6,10 @@ import CursoEnl from "../components/CursoEnl";
 import HeadHome from "../components/HeadHome";
 
 
-const HomeAlumno = ({ estado,setEstado,rol,u }) => {
+const HomeAlumno = ({ estado,setEstado,rol,u}) => {
   const {cod_alum,nombre,apellido,estado:est}=u;
   const [curso, setCursos] = useState([]);
+  const [cursoNav,setCursoNav]=useState('');
   const [option, setOption] = useState();
   const navigate = useNavigate();
 
@@ -39,7 +40,7 @@ const HomeAlumno = ({ estado,setEstado,rol,u }) => {
       <h3 className="dash-rol">Logeado Como Alumno</h3>
       <div className="dash-cursos">
         {curso.map((curso, i) => (
-          <CursoEnl key={i} curso={curso} enlace={enlace} btnText={btnText} />
+          <CursoEnl key={i} curso={curso} setCursoNav={setCursoNav} enlace={enlace} btnText={btnText} />
         ))}
       </div>
     </div>

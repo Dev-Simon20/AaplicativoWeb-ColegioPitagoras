@@ -1,22 +1,63 @@
 import { useNavigate, useParams } from "react-router-dom";
 import "./Calificacion.css";
+import { helphttp } from "../Helpers/helphttps";
+import { useEffect, useState } from "react";
 
 const Calificacion = () => {
   const navigate = useNavigate();
-  const id = useParams().id;
-  const idCurso = useParams().idCurso;
+  const [notas, setNotas] = useState([]);
+  const cod_alumno = useParams().id;
+  const cod_curso = useParams().idCurso;
+  const [promedio, setPromedio] =useState(0);
+
+  const api = helphttp();
+  const url = `http://localhost:3000/loginProfesor/cursos/lista/notas/${cod_curso}/${cod_alumno}`;
+  useEffect(() => {
+    api.get(url).then((data) => {
+      console.log(data);
+      setNotas(data);
+    });
+  }, []);
+  useEffect(()=>{
+    console.log('El tipoes: ',typeof notas.bim_1);
+    setPromedio((notas.bim_1+notas.bim_2+notas.bim_3+notas.bim_4)/4)
+  },[notas])
   const clickk = () => {
     navigate(-1);
   };
+
+  const handlechange = (e) => {
+    setNotas({
+      ...notas,
+      [e.target.name]: parseInt(e.target.value),
+    });
+  };
+  const guardarRegistro = () => {
+    console.log(notas.bim_1, notas.bim_2, notas.bim_3, notas.bim_4);
+    let data = {
+      bim_1: notas.bim_1,
+      bim_2: notas.bim_2,
+      bim_3: notas.bim_3,
+      bim_4: notas.bim_4,
+    };
+    let opt = { body: data, headers: { "content-type": "application/json" } };
+    let endP = `http://localhost:3000/loginProfesor/cursos/lista/notas/put/${cod_curso}/${cod_alumno}`;
+    api.put(endP, opt).then((data) => {
+      console.log(data);
+    });
+  };
+
   return (
     <>
-      <h1>Estas navegando al alumno con id: {id}</h1>
-      <h2>Estas NAvengando al curso con id:{idCurso}</h2>
+      <h1>Estas navegando al alumno con id: {cod_alumno}</h1>
+      <h2>Estas NAvengando al curso con id:{cod_curso}</h2>
       <section className="botones">
         <button className="boton-curso">
-          <p>curso</p>
+          <p>{notas.nombre_curso}</p>
         </button>
-        <button onClick={clickk} className="boton-back">Regresar a mis Cursos</button>
+        <button onClick={clickk} className="boton-back">
+          Regresar a mis Cursos
+        </button>
       </section>
       <section className="cuadro-notas">
         <table className="table-notas">
@@ -32,32 +73,52 @@ const Calificacion = () => {
           </thead>
           <tbody>
             <tr>
-              <td>Ñahui Ormeño Danielle</td>
               <td>
-                <input type="number"  max={20}/>
+                {notas.nombre_alumno} {notas.ap_paterno} {notas.ap_materno}
               </td>
               <td>
-                <input type="number" />
+                <input
+                  type="number"
+                  name="bim_1"
+                  value={notas.bim_1}
+                  onChange={handlechange}
+                />
               </td>
               <td>
-                <input type="number" />
+                <input
+                  type="number"
+                  name="bim_2"
+                  value={notas.bim_2}
+                  onChange={handlechange}
+                />
               </td>
               <td>
-                <input type="number" />
+                <input
+                  type="number"
+                  name="bim_3"
+                  value={notas.bim_3}
+                  onChange={handlechange}
+                />
               </td>
               <td>
-                <input type="number" />
+                <input
+                  type="number"
+                  name="bim_4"
+                  value={notas.bim_4}
+                  onChange={handlechange}
+                />
+              </td>
+              <td>
+                <p>{promedio}</p>
               </td>
             </tr>
           </tbody>
         </table>
       </section>
       <button className="coment-buton">Comentario del profesor</button>
-      <div className="coment">
-        <input type="text" />
-      </div>
+      <div className="coment"></div>
       <div className="cont-bt">
-        <button className="coment-buton" id="save">
+        <button className="coment-buton" id="save" onClick={guardarRegistro}>
           Guardar Notas
         </button>
       </div>
