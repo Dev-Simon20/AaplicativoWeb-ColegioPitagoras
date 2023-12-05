@@ -2,18 +2,17 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import LoginForm from "../components/LoginForm";
 
-const LoginAdmin = ({ estado,setRol }) => {
+const LoginAdmin = ({ estado,setRol,setEstado }) => {
   const userRol = "Administrador";
   const navigate = useNavigate();
-  // if (estado) {
-  //   navigate("/loginAdmin/homeAdmin");
-  // }
-  // const existensiaUsuario=(data)=>{
-  //   console.log('Se hace una peticion post al usuario:  ', data,'\n con el rol: ',userRol);
-  //   setRol(userRol)
-  // }
   const manejarClick=(form)=>{
+    if(form.usuario=='admin123'&& form.contrasena=='admin'){
+      setEstado(true);
       navigate("/loginAdmin/homeAdmin")
+    }
+    else{
+      alert('Usuario incorrecto')
+    }
   }
 
   const estilos = {

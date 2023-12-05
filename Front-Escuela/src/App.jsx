@@ -26,8 +26,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Informativo/>}/>
-          <Route path='/loginAdmin' element={<LoginAdmin setRol={setRol} estado={estado}/>}/>
-          <Route path="/loginAdmin/homeAdmin" element={<HomeAdmin estado={estado} rol={rol}/>}/>
+          <Route path='/loginAdmin' element={<LoginAdmin setRol={setRol} setEstado={setEstado} estado={estado}/>}/>
+          <Route path="/loginAdmin/homeAdmin" element={<HomeAdmin estado={estado} setEstado={setEstado} rol={rol}/>}/>
 
           <Route path='/loginAlumno' element={<LoginAlumno estado={estado} setEstado={setEstado} setRol={setRol} setU={setU}/>}/>
           
@@ -42,9 +42,9 @@ function App() {
           <Route path='/loginProfesor/homeProfesor' element={<HomeProfesor estado={estado} setCursoNav={setCursoNav} u={u} setEstado={setEstado}/>}/>
 
           <Route path="/loginProfesor/homeProfesor/listaAlumnos/:id"
-           element={<ListaAlumnos cursoNav={cursoNav}/>}/>
+           element={<ListaAlumnos setEstado={setEstado} estado={estado} cursoNav={cursoNav}/>}/>
            <Route path="/loginProfesor/homeProfesor/listaAlumnos/calificacion/:id/:idCurso"
-           element={<Calificacion/>}/>
+           element={<Calificacion setEstado={setEstado} estado={estado}/>}/>
         </Routes>
       </BrowserRouter>
 

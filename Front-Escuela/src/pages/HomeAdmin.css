@@ -1,5 +1,4 @@
 
-
 .contenGrado{
     width: 100%;
     display: flex;
@@ -28,4 +27,14 @@
 }
 .boton{
     cursor: pointer;
+}
+.admin-das{
+    border: 1px solid #eb7a09;
+    margin-top: 20px;
+    border-radius: 8px;
+    width: 350px;
+    margin-left: 20px;
+    padding-left:50px;
+    background-color: #0e285c;
+    color: white;
 }

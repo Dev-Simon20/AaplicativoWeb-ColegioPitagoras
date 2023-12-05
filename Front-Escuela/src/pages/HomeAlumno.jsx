@@ -6,7 +6,7 @@ import CursoEnl from "../components/CursoEnl";
 import HeadHome from "../components/HeadHome";
 
 
-const HomeAlumno = ({ estado,setEstado,rol,u}) => {
+const HomeAlumno = ({estado,setEstado,rol,u}) => {
   const {cod_alum,nombre,apellido,estado:est}=u;
   const [curso, setCursos] = useState([]);
   const [cursoNav,setCursoNav]=useState('');
@@ -26,7 +26,7 @@ const HomeAlumno = ({ estado,setEstado,rol,u}) => {
   },[])
   
   useEffect(()=>{
-    !estado&&navigate('/loginAlumno');
+    !estado&&navigate('/loginProfesor');
   },[estado]);
   const handleBack = () => {
     navigate("/loginAlumno");

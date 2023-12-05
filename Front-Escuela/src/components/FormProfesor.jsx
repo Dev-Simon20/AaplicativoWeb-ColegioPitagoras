@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {helphttp} from '../Helpers/helphttps'
+import "./FormProfesor.css"
 
 const FormProfesor=()=>{
     const [form,setForm]=useState([]);
@@ -30,15 +31,16 @@ const FormProfesor=()=>{
     }
 
     return(
-        <div>
-            <form onSubmit={registrar}>
+        <div className="cont">
+            <h3>Registro de nuevo Profesor</h3>
+            <form onSubmit={registrar} className="cont-formA">
                 <input type="number" onChange={handleChange} value={form.cod_profesor} name="cod_profesor" placeholder="Ingrese el Dni" />
                 <input type="text"   onChange={handleChange} value={form.nombre} name="nombre" placeholder="Nombre"/>
                 <input type="text"   onChange={handleChange} value={form.ap_paterno} name="ap_paterno" placeholder="apellido paterno" />
                 <input type="text"   onChange={handleChange} value={form.ap_materno} name="ap_materno" placeholder="apellido materno" />
                 <input type="number" onChange={handleChange} value={form.edad} name="edad" placeholder="Ingrese su edad"  min={11} maxLength={2}/>
                 <input type="text"   onChange={handleChange} value={form.genero} name="genero" maxLength={1} placeholder="Genero"/>
-                <input type="number" onChange={handleChange} value={form.movil} name="movil" maxLength={9} />
+                <input type="number" onChange={handleChange} value={form.movil} name="movil" placeholder="Numero de Telefono" maxLength={9} />
                 <input type="submit" />
             </form>
         </div>

@@ -58,7 +58,7 @@ const alumnosInitial=[
       nombre: "Laura Pérez"
     }
   ]
-const ListaAlumnos=({cursoNav})=>{
+const ListaAlumnos=({cursoNav,estado,setEstado})=>{
     const navigate=useNavigate();
     const [cod_curso,setCod]=useState(useParams().id)
     const [cursos,setCursos]=useState(cursosTemp)
@@ -72,13 +72,16 @@ const ListaAlumnos=({cursoNav})=>{
         console.log(data);
        })
     },[])
+    useEffect(()=>{
+      !estado&&navigate('/loginProfesor')
+    },[estado])
     const handleBack=()=>{
         navigate('/loginProfesor/homeProfesor');
     }
     // var nombreCur=cursos[id].nombre;
     return(
         <>
-        <HeadHome handleBack={handleBack}></HeadHome>
+        <HeadHome setEstado={setEstado} handleBack={handleBack}></HeadHome>
          <div className="content">
            <h3 className="titLista"> Curso: {cursoNav}</h3>
             {alumnos.map((alumno,i)=>(

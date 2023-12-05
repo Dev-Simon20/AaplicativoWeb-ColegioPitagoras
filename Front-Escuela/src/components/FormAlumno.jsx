@@ -1,6 +1,18 @@
 import { useState } from "react";
 import {helphttp} from '../Helpers/helphttps'
+import "./FormAlumno.css"
 
+const initialForm={
+    ap_materno: "",
+    ap_paterno: "",
+    cod_alumno: "",
+    contrasena: "",
+    edad: "",
+    genero: "",
+    nombre:"" ,
+    usuario:"" ,
+    cod_grado: ""
+    }
 const FormAlumno=()=>{
     const [form,setForm]=useState([]);
     
@@ -22,22 +34,25 @@ const FormAlumno=()=>{
         console.log(cortar);
         form.usuario=`${form.nombre}${cortar}`;
         form.contrasena=`${form.nombre}${cortar}`;
-        let opt = { body: form, headers: { "content-type": "application/json" } };
+        let opt = { body:form, headers: { "content-type": "application/json" } };
         api.post(url, opt).then((res) => {
             console.log("El contenido de res es :", res);
           });
+        setForm(initialForm);
+        console.log(form);
     }
 
     return(
-        <div>
-            <form onSubmit={registrar}>
+        <div className="cont">
+            <h3>Registro de nuevo Alumno</h3>
+            <form onSubmit={registrar} className="cont-formA">
                 <input type="number" onChange={handleChange} value={form.cod_alumno} name="cod_alumno" placeholder="Ingrese el Dni" />
                 <input type="text"   onChange={handleChange} value={form.nombre} name="nombre" placeholder="Nombre"/>
                 <input type="text"   onChange={handleChange} value={form.ap_paterno} name="ap_paterno" placeholder="apellido paterno" />
                 <input type="text"   onChange={handleChange} value={form.ap_materno} name="ap_materno" placeholder="apellido materno" />
                 <input type="number" onChange={handleChange} value={form.edad} name="edad" placeholder="Ingrese su edad" max={18} min={11} maxLength={2}/>
                 <input type="text"   onChange={handleChange} value={form.genero} name="genero" maxLength={1} placeholder="Genero"/>
-                <select name="cod_grado" onChange={handleChange} value={form.cod_grado}>
+                <select className="sel" name="cod_grado" onChange={handleChange} value={form.cod_grado}>
                     <option value="100">Primero de Secundaria</option>
                     <option value="200">Segundo de Secundaria</option>
                     <option value="300">Tercero de Secundaria</option>

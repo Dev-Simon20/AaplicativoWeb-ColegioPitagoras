@@ -2,8 +2,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import "./Calificacion.css";
 import { helphttp } from "../Helpers/helphttps";
 import { useEffect, useState } from "react";
+import HeadHome from "../components/HeadHome";
 
-const Calificacion = () => {
+const Calificacion = ({estado,setEstado}) => {
   const navigate = useNavigate();
   const [notas, setNotas] = useState([]);
   const cod_alumno = useParams().id;
@@ -26,6 +27,11 @@ const Calificacion = () => {
     navigate(-1);
   };
 
+   useEffect(()=>{
+    !estado&&navigate('/loginProfesor');
+  },[estado]);
+
+
   const handlechange = (e) => {
     setNotas({
       ...notas,
@@ -46,11 +52,14 @@ const Calificacion = () => {
       console.log(data);
     });
   };
-
+  
+  const handleBack=()=>{
+     navigate(-1)
+  }
   return (
-    <>
-      <h1>Estas navegando al alumno con id: {cod_alumno}</h1>
-      <h2>Estas NAvengando al curso con id:{cod_curso}</h2>
+    <> 
+       <HeadHome setEstado={setEstado} handleBack={handleBack}></HeadHome>
+      <button>Alumno: {notas.nombre_alumno} {notas.ap_paterno} {notas.ap_materno}</button>
       <section className="botones">
         <button className="boton-curso">
           <p>{notas.nombre_curso}</p>

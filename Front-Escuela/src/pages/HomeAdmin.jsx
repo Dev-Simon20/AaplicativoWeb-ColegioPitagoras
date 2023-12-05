@@ -9,7 +9,7 @@ import FormProfesor from "../components/FormProfesor";
 
 
 
-const HomeAdmin = ({ estado }) => {
+const HomeAdmin = ({ estado,setEstado}) => {
   var api=helphttp();
   var url=`http://localhost:3000/loginAdmin/home`
   const [mostrar,setMostrar]=useState('');
@@ -26,6 +26,9 @@ const HomeAdmin = ({ estado }) => {
         setProfesores(data)  
       })
    },[])
+   useEffect(()=>{
+    !estado&&navigate('/loginAdmin')
+ },[estado])
 
 
   const llamadaApi=(cod_grado)=>{
@@ -51,13 +54,11 @@ const HomeAdmin = ({ estado }) => {
 
   return (
     <>
-      <HeadHome handleBack={handleBack}></HeadHome>
+      <HeadHome setEstado={setEstado} handleBack={handleBack}></HeadHome>
       <div>
-        <h3 className="ho">Dashboard de Admin</h3>
-        <p>Asigancion de docentes</p>
+        <h3 className="admin-das">Dashboard de Admin</h3>
         <section className="contenGrado">
-
-          
+          <h3>Asignacion de Docentes</h3>
           <article className="grad">
             <div className="gradbtn">
               <p>Primero de Secundaria</p>
@@ -106,13 +107,13 @@ const HomeAdmin = ({ estado }) => {
             </div>
           </article>
         </section>
-        <section>
+        <section className="contenGrado">
           <FormAlumno/>
         </section>
-        <hr />
-        <section>
+  
+        <section className="contenGrado">
           <FormProfesor/>
-        </section>
+        </section >
       </div>
     </>
   );
